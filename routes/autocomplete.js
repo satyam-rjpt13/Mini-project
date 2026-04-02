@@ -4,6 +4,8 @@ const Word = require('../models/Word');
 const { trie } = require('../modules/trieInstance');
 
 // GET /api/autocomplete?prefix=abc&limit=10
+//here we get APi 
+
 router.get('/autocomplete', async (req, res) => {
   const { prefix, limit } = req.query;
   if (!prefix || prefix.trim() === '') {
@@ -18,6 +20,8 @@ router.get('/autocomplete', async (req, res) => {
 });
 
 // POST /api/autocomplete/search — track a search (increments frequency)
+
+
 router.post('/autocomplete/search', async (req, res) => {
   const { word } = req.body;
   if (!word || word.trim() === '') {
@@ -34,12 +38,14 @@ router.post('/autocomplete/search', async (req, res) => {
 });
 
 // GET /api/words — list all words
+
 router.get('/words', async (req, res) => {
   const words = await Word.find({}).sort({ frequency: -1, word: 1 }).select('word frequency -_id');
   res.json({ count: words.length, words });
 });
 
 // POST /api/words — insert a word
+
 router.post('/words', async (req, res) => {
   const { word } = req.body;
   if (!word || word.trim() === '') {

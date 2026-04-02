@@ -5,12 +5,14 @@ require('dotenv').config();
 
 const app = express();
 
-// Middleware
+// Middleware (express)
+
 app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
 
 // Routes
+
 const autocompleteRouter = require('./routes/autocomplete');
 app.use('/api', autocompleteRouter);
 
@@ -26,6 +28,7 @@ mongoose.connect(process.env.MONGO_URI)
     console.log('✅ MongoDB Connected to triedb');
 
     // Load all persisted words into the in-memory Trie
+    
     const Word = require('./models/Word');
     const { trie } = require('./modules/trieInstance');
     const words = await Word.find({}).select('word -_id');
