@@ -4,7 +4,8 @@ const Word = require('../models/Word'); // Mongoose model for words collection
 const { trie } = require('../modules/trieInstance'); // Trie instance for fast prefix search
 
 
-
+// Autocomplete backend using Express, MongoDB and Trie
+// Stores words with frequency and provides fast prefix-based suggestions
 // GET /api/autocomplete — return suggestions based on prefix
 router.get('/autocomplete', async (req, res) => {
   const { prefix, limit } = req.query;
