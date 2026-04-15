@@ -3,8 +3,7 @@ const router = express.Router();
 const Word = require('../models/Word');
 const { trie } = require('../modules/trieInstance');
 
-// GET /api/autocomplete?prefix=abc&limit=10
-//here we get APi 
+
 
 router.get('/autocomplete', async (req, res) => {
   const { prefix, limit } = req.query;
